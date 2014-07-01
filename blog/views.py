@@ -48,3 +48,12 @@ def add_post_post():
     session.commit()
     return redirect(url_for("posts"))
 
+@app.route("/post/<int:primary_key>")
+def post(primary_key=0):
+    post = session.query(Post).get(primary_key)
+
+    return render_template(
+        "post.html",
+        post=post
+    )
+
