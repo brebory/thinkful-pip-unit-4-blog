@@ -8,9 +8,14 @@
     </ul>
   </div>
   <div class="col-md-10">
-    <h1>
-      <a href="{{ url_for('post', primary_key=post.id) }}"> {{ post.title }} </a>
-    </h1>
+    <header>
+      <h1>
+        <a href="{{ url_for('post', primary_key=post.id) }}"> {{ post.title }} </a>
+      </h1>
+      <p>
+        Author: {{ post.author.name }}
+      </p>
+    </header>
     <p>
       {{ post.content | safe }}
     </p>
