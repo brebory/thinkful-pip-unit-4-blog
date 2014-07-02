@@ -8,7 +8,7 @@ manager = Manager(app)
 @manager.command
 def run():
     port = int(os.environ.get('PORT', 8000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
 
 from blog.models import Post
 from blog.database import session
