@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if post %}
+<form role="form" method="POST">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="title" value="{{ post.title }}" required>
+  </div>
+  <div class="form-group">
+    <label for="content">Content</label>
+    <textarea class="form-control" id="content" name="content" required>{{ post.content }}</textarea>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+{% else %}
+<div class="alert alert-danger">
+  <h1>No post with that id exists!</h1>
+  <p>Maybe you'd like to <a href="{{ url_for('add_post_get') }}">add one</a>?</p>
+</div>
+{% endif %}
+
+{% endblock %}
+

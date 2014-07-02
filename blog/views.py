@@ -57,3 +57,22 @@ def post(primary_key=0):
         post=post
     )
 
+@app.route("/post/<int:primary_key>/edit", methods=["GET"])
+def edit_post_get(primary_key):
+    post = session.query(Post).get(primary_key)
+    return render_template(
+        "edit_post.html",
+        post=post
+    )
+
+@app.route("/post/<int:primary_key>/edit", methods=["POST"])
+def edit_post_put(primary_key):
+    # Get the current post
+    post = session.query(Post).get(primary_key)
+    # Update the current post with the values from the form
+    post.title = request.form["title"]
+    post.content = mistune.markdown(request.form["content"])
+    session.commit()
+    # Redirect to the post page
+    return redirect(url_for("post", primary_key=post.id))
+
